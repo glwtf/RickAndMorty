@@ -1,4 +1,4 @@
-package ru.glwtf.rickandmorty
+package ru.glwtf.rickandmorty.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
