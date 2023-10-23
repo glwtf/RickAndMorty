@@ -1,15 +1,8 @@
 package ru.glwtf.rickandmorty
 
-import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -34,7 +27,7 @@ class ExampleInstrumentedTest {
     @Test
     fun test_request() = runBlocking{
         val page = 1
-        val response = ApiClient.getCharacter(page)
+        val response = ApiClient().getCharacters(page)
         println(response.toString())
     }
 }

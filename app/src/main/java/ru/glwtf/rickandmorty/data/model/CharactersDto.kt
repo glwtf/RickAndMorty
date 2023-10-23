@@ -10,6 +10,7 @@ data class CharactersDto (
 ) {
     @Serializable
     data class InfoDto(
+        @SerialName("pages") val totalPagesCount: Int,
         @SerialName("next") val nextPage: String?,
         @SerialName("prev") val prevPage: String?,
     )
