@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">RickAndMorty</string>
+    <string name="app_name">Rick And Morty</string>
+    <string name="debug_log">RAM_DEBUG</string>
 </resources>

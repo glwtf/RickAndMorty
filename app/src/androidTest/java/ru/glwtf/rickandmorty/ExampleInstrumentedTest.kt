@@ -2,11 +2,13 @@ package ru.glwtf.rickandmorty
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import kotlinx.coroutines.runBlocking
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import org.junit.Assert.*
+import ru.glwtf.rickandmorty.data.network.ApiClient
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -20,5 +22,12 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("ru.glwtf.rickandmorty", appContext.packageName)
+    }
+
+    @Test
+    fun test_request() = runBlocking{
+        val page = 1
+        val response = ApiClient().getCharacters(page)
+        println(response.toString())
     }
 }
