@@ -2,23 +2,24 @@ package ru.glwtf.rickandmorty.data.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import ru.glwtf.rickandmorty.data.model.CharactersDto
+import ru.glwtf.rickandmorty.data.mapper.Mapper.mapToDomainCharacters
 import ru.glwtf.rickandmorty.data.network.ApiClient
+import ru.glwtf.rickandmorty.domain.entity.Character
 import javax.inject.Inject
 
 class CharactersPagingSource @Inject constructor(
     private val rickMortyApi: ApiClient
-) : PagingSource<Int, CharactersDto.CharacterDto>() {
-    override fun getRefreshKey(state: PagingState<Int, CharactersDto.CharacterDto>): Int? {
+) : PagingSource<Int,Character>() {
+    override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
         return state.anchorPosition
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharactersDto.CharacterDto> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
         return try {
             val pageNumber = params.key ?: 1
             val response = rickMortyApi.getCharacters(pageNumber)
             LoadResult.Page(
-                response.characterList,
+                response.mapToDomainCharacters(),
                 prevKey = params.prevKey(),
                 nextKey = params.nextKey(response.info.totalPagesCount)
             )
