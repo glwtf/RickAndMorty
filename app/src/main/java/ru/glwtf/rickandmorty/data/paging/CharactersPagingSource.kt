@@ -36,9 +36,8 @@ class CharactersPagingSource @Inject constructor(
     }
 
     private fun LoadParams<Int>.nextKey(totalSize: Int) : Int? {
-        val curKey = key
-        return if (curKey == null) null
-        else if (curKey + 1 > totalSize) null
+        val curKey = key ?: 1
+        return if (curKey + 1 > totalSize) null
         else curKey + 1
     }
 }
