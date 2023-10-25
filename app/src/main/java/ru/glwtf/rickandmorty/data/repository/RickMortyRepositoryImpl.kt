@@ -20,7 +20,7 @@ class RickMortyRepositoryImpl @Inject constructor(
     }
 
     companion object {
-        private const val MAX_PAGE_SIZE = 10
-        private const val PREFETCH_DISTANCE = 2
+        private const val MAX_PAGE_SIZE = 5
+        private const val PREFETCH_DISTANCE = 1
     }
 }

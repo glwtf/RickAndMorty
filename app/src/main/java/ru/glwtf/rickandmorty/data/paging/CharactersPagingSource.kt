@@ -29,9 +29,8 @@ class CharactersPagingSource @Inject constructor(
     }
 
     private fun LoadParams<Int>.prevKey() : Int? {
-        val curKey = key
-        return if (curKey == null) null
-        else if (curKey - 1 < 1) null
+        val curKey = key ?: 1
+        return if (curKey - 1 < 1) null
         else curKey - 1
     }
 
