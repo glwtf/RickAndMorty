@@ -1,9 +1,7 @@
 package ru.glwtf.rickandmorty.ui.screens
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,13 +12,11 @@ import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,6 +32,7 @@ import coil.compose.AsyncImage
 import ru.glwtf.rickandmorty.R
 import ru.glwtf.rickandmorty.domain.entity.Character
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterScreen(
@@ -47,14 +44,13 @@ fun CharacterScreen(
           TopAppBar(
               title = {},
               colors = TopAppBarDefaults.smallTopAppBarColors(
-//                  containerColor = MaterialTheme.colorScheme.background
                   containerColor = Color.Transparent
               ),
               navigationIcon = {
                   FilledTonalIconButton(
                       onClick = { onBackPressedClickListener() },
                       colors = IconButtonDefaults.iconButtonColors(
-                          containerColor = MaterialTheme.colorScheme.onSecondary
+                          containerColor = MaterialTheme.colorScheme.background.copy(alpha = 0.8F)
                       )
                   ) {
                       Icon(
@@ -67,22 +63,16 @@ fun CharacterScreen(
               }
           )
       }
-    ) { paddingVal ->
-        CharacterScreenContent(
-            character = character,
-            paddingVal = paddingVal
-        )
+    ) {
+        CharacterScreenContent(character = character)
     }
 
 }
 @Composable
 private fun CharacterScreenContent(
     character: Character,
-    paddingVal: PaddingValues,
 ) {
-    Column (
-//        modifier = Modifier.padding(paddingVal)
-    ) {
+    Column {
         AsyncImage(
             model = character.characterAvatar,
             contentDescription = null,
