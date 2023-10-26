@@ -109,7 +109,7 @@ private fun CharacterItemContent(
                     modifier = Modifier
                         .clip(CircleShape)
                         .size(16.dp)
-                        .padding(4.dp)
+                        .padding(end = 4.dp)
 
                 )
                 Text(text = character.characterLiveStatus)

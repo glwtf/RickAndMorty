@@ -25,7 +25,10 @@ fun MainScreen(
             )
         },
         characterScreenContent = {
-            CharacterScreen(it)
+            CharacterScreen(
+                character = it,
+                onBackPressedClickListener = { navigationState.navHostController.popBackStack() }
+            )
         }
     )
 }
